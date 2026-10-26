@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="Product Hunter AI", page_icon="🛍️", layout="centered")
+st.set_page_config(page_title="LUXN Analytics", page_icon="💎", layout="centered")
 
-st.title("🛍️ Product Hunter AI")
-st.markdown("### Validador de Productos y Calculadora de Márgenes para E-commerce")
+st.title("💎 LUXN Analytics")
+st.markdown("### Validador de Productos y Calculadora de Rentabilidad para E-commerce")
 
 tab1, tab2 = st.tabs(["📊 Calculadora de Márgenes", "✅ Checklist de Validación"])
 
@@ -18,7 +18,6 @@ with tab1:
     publicidad_cpa = st.number_input("CPA estimado (Coste por Adquisición Publicitaria) (€)", value=8.00, step=0.5)
 
     if st.button("Calcular Beneficios"):
-        # Cálculo de IVA
         precio_base = precio_venta / 1.21 if incluir_iva else precio_venta
         iva_pagado = precio_venta - precio_base if incluir_iva else 0
         
@@ -40,18 +39,20 @@ with tab1:
         else:
             st.error("¡Cuidado! Estás perdiendo dinero con este precio y costes.")
 
-        # Generador de informe para descargar
-        informe = f"""--- INFORME PRODUCT HUNTER AI ---
-Precio Venta: {precio_venta:.2f} €
+        informe = f"""=================================
+      INFORME LUXN ANALYTICS     
+=================================
+Precio Venta (PVP): {precio_venta:.2f} €
 Coste Proveedor: {costo_producto:.2f} €
 Coste Envío: {costo_envio:.2f} €
 CPA Publicidad: {publicidad_cpa:.2f} €
 ---------------------------------
-BENEFICIO NETO: {beneficio_neto:.2f} €
+BENEFICIO NETO REAL: {beneficio_neto:.2f} €
 MARGEN NETO: {margen:.1f}%
----------------------------------
+=================================
+Generado por LUXN Analytics
 """
-        st.download_button("📥 Descargar Informe", informe, file_name="analisis_producto.txt")
+        st.download_button("📥 Descargar Informe LUXN", informe, file_name="informe_luxn_analytics.txt")
 
 with tab2:
     st.subheader("Checklist de Producto Ganador")
